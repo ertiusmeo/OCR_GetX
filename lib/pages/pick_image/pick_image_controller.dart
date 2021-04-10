@@ -1,25 +1,22 @@
-import 'package:get/get.dart';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
-import 'package:image_cropper/image_cropper.dart';
+
 import 'package:flutter/material.dart';
-
-
+import 'package:get/get.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PickImageController extends GetxController {
-
   File image;
   final picker = ImagePicker();
-  var text="";
-  bool fileLoaded=false;
-
+  var text = "";
+  bool fileLoaded = false;
 
   Future<void> getImage(ImageSource source) async {
     final pickedFile = await picker.getImage(source: source);
 
     if (pickedFile != null) {
       image = File(pickedFile.path);
-      fileLoaded=true;
+      fileLoaded = true;
     } else {
       print('No image selected.');
     }
@@ -38,10 +35,6 @@ class PickImageController extends GetxController {
         toolbarTitle: 'Crop It');
 
     image = cropped ?? image;
-   update();
+    update();
   }
-
-
-
-
 }
